@@ -135,8 +135,23 @@ export function useConfigPrecificadores(): UseConfigPrecificadoresReturn {
     try {
       const { usuarios, niveis, categorias } = await seedLoader.loadReadOnly();
       await seedLoader.initializeIfNeeded();
-      const configuracao = storage.getConfiguracao();
+      let configuracao = storage.getConfiguracao();
       const atribuicoes = storage.listAtribuicoes();
+
+      // Auto-default: se não há nível configurado ainda, salva
+      // "Subcategoria" silenciosamente. Evita forçar o usuário a re-clicar
+      // no SelectPicker pra commitar o que já está visível como default.
+      if (configuracao.nivelId === null && niveis.length > 0) {
+        const defaultNivel = niveis.find((n) => n.id === 'nivel-subcategoria') ?? niveis[niveis.length - 1];
+        const novo: ConfiguracaoGlobal = {
+          schemaVersion: 1,
+          nivelId: defaultNivel.id,
+          atualizadoEm: new Date().toISOString(),
+        };
+        storage.setConfiguracao(novo);
+        configuracao = novo;
+      }
+
       dispatch({
         type: 'BOOT_OK',
         payload: { usuarios, niveis, categorias, configuracao, atribuicoes },
