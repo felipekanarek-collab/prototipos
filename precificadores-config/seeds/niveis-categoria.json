@@ -1,0 +1,5 @@
+[
+  { "schemaVersion": 1, "id": "nivel-departamento", "nome": "Departamento", "ordem": 1 },
+  { "schemaVersion": 1, "id": "nivel-categoria",    "nome": "Categoria",    "ordem": 2 },
+  { "schemaVersion": 1, "id": "nivel-subcategoria", "nome": "Subcategoria", "ordem": 3 }
+]

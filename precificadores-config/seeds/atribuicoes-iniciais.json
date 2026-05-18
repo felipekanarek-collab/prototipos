@@ -1,0 +1,57 @@
+{
+  "configuracao": {
+    "schemaVersion": 1,
+    "nivelId": "nivel-categoria",
+    "atualizadoEm": "2026-04-12T09:30:00.000Z"
+  },
+  "atribuicoes": [
+    {
+      "schemaVersion": 1,
+      "id": "atr-001",
+      "usuarioId": "usr-001",
+      "categoriaIds": ["cat-doces", "cat-salgados", "cat-biscoitos-doces"],
+      "criadoEm": "2026-04-12T09:35:00.000Z",
+      "atualizadoEm": "2026-04-12T09:35:00.000Z"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "atr-002",
+      "usuarioId": "usr-003",
+      "categoriaIds": ["cat-doces"],
+      "criadoEm": "2026-04-12T09:38:00.000Z",
+      "atualizadoEm": "2026-04-18T15:20:00.000Z"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "atr-003",
+      "usuarioId": "usr-007",
+      "categoriaIds": [
+        "cat-bebidas-nao-alc",
+        "cat-massas-molhos",
+        "cat-pao",
+        "cat-bolos",
+        "cat-tortas",
+        "cat-frutas",
+        "cat-legumes"
+      ],
+      "criadoEm": "2026-04-15T11:00:00.000Z",
+      "atualizadoEm": "2026-04-15T11:00:00.000Z"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "atr-004",
+      "usuarioId": "usr-009",
+      "categoriaIds": ["cat-carnes-bovinas", "cat-carnes-suinas", "cat-aves", "cat-frios"],
+      "criadoEm": "2026-04-20T10:00:00.000Z",
+      "atualizadoEm": "2026-04-20T10:00:00.000Z"
+    },
+    {
+      "schemaVersion": 1,
+      "id": "atr-005",
+      "usuarioId": "usr-012",
+      "categoriaIds": ["cat-higiene-pessoal", "cat-limpeza-domestica"],
+      "criadoEm": "2026-05-02T14:30:00.000Z",
+      "atualizadoEm": "2026-05-02T14:30:00.000Z"
+    }
+  ]
+}

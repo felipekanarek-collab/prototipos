@@ -1,0 +1,10 @@
+.DS_Store
+
+# Cada protótipo tem seu próprio .gitignore — estes aqui são fallbacks
+# para arquivos pesados que NUNCA devem entrar no repo.
+**/node_modules/
+**/dist/
+**/.ds-ref/
+**/.vite/
+**/*.tsbuildinfo
+**/*.log

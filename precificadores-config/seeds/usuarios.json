@@ -1,0 +1,16 @@
+[
+  { "schemaVersion": 1, "id": "usr-001", "nome": "Ana Cardoso",      "email": "ana.cardoso@cliente.com",    "ativo": true },
+  { "schemaVersion": 1, "id": "usr-002", "nome": "Bruno Tavares",    "email": "bruno.tavares@cliente.com",  "ativo": true },
+  { "schemaVersion": 1, "id": "usr-003", "nome": "Carla Mendonça",   "email": "carla.mendonca@cliente.com", "ativo": true },
+  { "schemaVersion": 1, "id": "usr-004", "nome": "Diego Sampaio",    "email": "diego.sampaio@cliente.com",  "ativo": true },
+  { "schemaVersion": 1, "id": "usr-005", "nome": "Eduarda Lins",     "email": "eduarda.lins@cliente.com",   "ativo": true },
+  { "schemaVersion": 1, "id": "usr-006", "nome": "Felipe Ramos",     "email": "felipe.ramos@cliente.com",   "ativo": true },
+  { "schemaVersion": 1, "id": "usr-007", "nome": "Gabriela Souza",   "email": "gabriela.souza@cliente.com", "ativo": true },
+  { "schemaVersion": 1, "id": "usr-008", "nome": "Henrique Vasques", "email": "henrique.v@cliente.com",     "ativo": true },
+  { "schemaVersion": 1, "id": "usr-009", "nome": "Isabela Couto",    "email": "isabela.couto@cliente.com",  "ativo": true },
+  { "schemaVersion": 1, "id": "usr-010", "nome": "João Pedro Lima",  "email": "joao.lima@cliente.com",      "ativo": true },
+  { "schemaVersion": 1, "id": "usr-011", "nome": "Karen Oliveira",   "email": "karen.oliveira@cliente.com", "ativo": true },
+  { "schemaVersion": 1, "id": "usr-012", "nome": "Luísa Bandeira",   "email": "luisa.bandeira@cliente.com", "ativo": true },
+  { "schemaVersion": 1, "id": "usr-013", "nome": "Marcos Antunes",   "email": "marcos.antunes@cliente.com", "ativo": false },
+  { "schemaVersion": 1, "id": "usr-014", "nome": "Natália Reis",     "email": "natalia.reis@cliente.com",   "ativo": true }
+]

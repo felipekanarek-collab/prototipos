@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPA — Configuração de Precificadores</title>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- DS (copiado de .ds-ref/design-system/dist via scripts/copy-ds.mjs) -->
+    <link rel="stylesheet" href="ds/tokens.css" />
+    <link rel="stylesheet" href="ds/styles.css" />
+
+    <style>
+      /* Reset mínimo */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { width: 100%; }
+      body {
+        font-family: var(--font-family-base);
+        background: var(--color-gray-50);
+        min-height: 100vh;
+        color: var(--color-gray-900);
+      }
+      /* React root precisa ocupar full-width pra que .header (position: relative;
+         width: 100% do DS) cresça para o viewport todo. Sem isso, o header
+         encolhe ao tamanho do conteúdo. */
+      #root { width: 100%; min-height: 100vh; }
+      button { font-family: inherit; cursor: pointer; }
+
+      /* ─────────────────────────────────────────────────────────────
+         Layout do Administrativo IPA — espelhado de
+         .ds-ref/prototipos/ipa/teste-handoff/configuracoes-outliers.html
+         (Princípio I §3 da Constitution: classes prototype-specific
+         que NÃO são do DS são permitidas desde que usem apenas tokens.)
+         ───────────────────────────────────────────────────────────── */
+
+      .title-bar { top: 60px; }
+      .config-tabs { top: 104px; }
+      .config-content { top: 206px; }
+
+      .config-tabs {
+        position: fixed;
+        left: 52px;
+        right: 0;
+        z-index: 41;
+        padding: 0 var(--space-4);
+        transition: left 300ms ease;
+      }
+      .config-tabs__inner {
+        background: var(--color-white);
+        border-radius: var(--radius-sm);
+        padding: 16px 16px 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+      .config-tabs__title {
+        padding: 0 var(--space-4);
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 26px;
+        color: var(--color-gray-900);
+      }
+
+      /* navbar customizations dentro do config-tabs */
+      .config-tabs .navbar { border-bottom: none; }
+      .navbar__item { font-weight: var(--font-weight-regular); }
+      .navbar__item .material-icons-outlined,
+      .navbar__item .material-icons { font-size: 16px; }
+      .navbar__item.is-active .material-icons { color: var(--color-blue-400); }
+      .navbar__item.is-locked { color: var(--color-gray-500); cursor: not-allowed; }
+      .navbar__item.is-locked .material-icons { color: var(--color-gray-500); }
+
+      .config-content {
+        position: fixed;
+        left: 52px;
+        right: 0;
+        bottom: 0;
+        padding: var(--space-1) var(--space-4) var(--space-4);
+        overflow-y: auto;
+        transition: left 300ms ease;
+      }
+      .config-layout {
+        display: flex;
+        gap: var(--space-3);
+        align-items: flex-start;
+        padding-top: 8px;
+      }
+
+      .config-menu {
+        background: var(--color-white);
+        border-radius: 6px;
+        padding: 16px;
+        width: 260px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .config-menu__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 8px 12px 12px;
+        border-radius: 4px;
+        background: var(--color-white);
+        cursor: pointer;
+        transition: background 150ms ease;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-family: inherit;
+      }
+      .config-menu__item:hover { background: var(--color-gray-100); }
+      .config-menu__item.is-active { background: var(--color-blue-light-5); }
+      .config-menu__item.is-active .config-menu__label { color: var(--color-gray-800); }
+      .config-menu__label {
+        font-size: 14px;
+        font-weight: var(--font-weight-semibold);
+        line-height: 20px;
+        color: var(--color-gray-900);
+      }
+      .config-menu__item .material-icons,
+      .config-menu__item .material-icons-outlined {
+        font-size: 20px;
+        color: var(--color-gray-800);
+      }
+
+      .config-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+      }
+
+      .config-card {
+        background: var(--color-white);
+        border-radius: var(--radius-sm);
+        padding: var(--space-4);
+      }
+      .config-card__header {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .config-card__title {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        color: var(--color-gray-900);
+      }
+      .config-card__desc {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        color: var(--color-gray-700);
+      }
+      .config-card__body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        margin-top: var(--space-6);
+      }
+
+      .config-eyebrow {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: var(--color-gray-900);
+      }
+      .config-sub-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .config-sub-section__desc {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        color: var(--color-gray-700);
+      }
+      .config-sub-section__desc--md {
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .config-radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+
+      .config-aviso { padding: 16px; }
+      .config-aviso__inner {
+        background: var(--color-orange-light-5);
+        padding: 16px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .config-aviso__icon {
+        font-size: 20px;
+        color: var(--color-orange-400);
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .config-aviso__body {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: var(--color-gray-900);
+        flex: 1;
+      }
+
+      .config-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        border-radius: var(--radius-sm);
+        color: var(--color-gray-700);
+        font-size: var(--font-size-md);
+        cursor: pointer;
+        background: none;
+        border: none;
+        font-family: var(--font-family-base);
+      }
+      .config-back:hover { background: var(--color-gray-100); }
+
+      /* Sidebar — destaque do item ativo (mesma hack do prototype original) */
+      .sidebar__item--active { background: var(--color-blue-light-5); }
+      .sidebar__item--active .sidebar__icon {
+        filter: brightness(0) saturate(100%) invert(38%) sepia(91%) saturate(1542%) hue-rotate(195deg) brightness(96%) contrast(91%);
+      }
+
+      .config-footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--space-2);
+        padding: var(--space-3) var(--space-4);
+        background: var(--color-white);
+        border-radius: var(--radius-sm);
+      }
+
+      /* Toast em rodapé */
+      .toast-container { top: auto; bottom: 24px; }
+
+      /* Largura padrão das buscas neste protótipo: 400px.
+         Override local do `.searchbar` do DS (que não define width). */
+      .searchbar { width: 400px; }
+
+      /* `.config-aviso` é "card branco com bloco laranja interno" (per CSS
+         comment do DS), mas a regra publicada não inclui background. Override
+         local pra alinhar com a intenção documentada. */
+      .config-aviso {
+        background: var(--color-white);
+        border-radius: var(--radius-sm);
+      }
+
+      /* Dentro do ModalAtribuicao, busca ocupa largura toda do modal. */
+      .modal--atribuicao .searchbar { width: 100%; }
+
+      /* Override overflow do .modal__body para o ModalAtribuicao —
+         o SelectPicker.dropdown é position:absolute e ficaria clipado
+         pelo overflow-y: auto padrão do DS. Como o body do nosso modal
+         de atribuição não precisa rolar (conteúdo cabe em <60vh), pode
+         visible sem prejuízo. O próprio dropdown tem max-height: 280px
+         + overflow interno, então ele rola sozinho. */
+      .modal--atribuicao .modal__body { overflow: visible; }
+
+      /* ─── Lista de usuários no ModalAtribuicao ─── */
+      .usuario-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        font-family: inherit;
+        width: 100%;
+        transition: background 120ms ease;
+      }
+      .usuario-item:hover { background: var(--color-gray-100); }
+      .usuario-item--active { background: var(--color-blue-light-10); }
+      .usuario-item__avatar {
+        color: var(--color-gray-600);
+        font-size: 28px;
+      }
+      .usuario-item__info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+      }
+      .usuario-item__nome {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-gray-900);
+        line-height: 20px;
+      }
+      .usuario-item__meta {
+        font-size: 12px;
+        color: var(--color-gray-600);
+        line-height: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* ─── Lista de categorias no ModalAtribuicao (etapa 2) ─── */
+      .categoria-item {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        cursor: pointer;
+        transition: background 120ms ease;
+      }
+      .categoria-item:hover { background: var(--color-gray-100); }
+      .categoria-item--checked { background: var(--color-blue-light-5); }
+      .categoria-item--checked .categoria-item__nome { color: var(--color-blue-600); }
+      .categoria-item--checked:hover { background: var(--color-blue-light-10); }
+      .categoria-item__info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+      }
+      .categoria-item__nome {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-gray-900);
+        line-height: 20px;
+      }
+      .categoria-item__breadcrumb {
+        font-size: 12px;
+        color: var(--color-gray-600);
+        line-height: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* ─── Linha de atribuição na ListaAtribuicoes (US3) ─── */
+      .atribuicao-row {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-2);
+        padding: var(--space-3);
+        border: 1px solid var(--color-gray-200);
+        border-radius: var(--radius-sm);
+        background: var(--color-white);
+      }
+      .atribuicao-row__avatar {
+        color: var(--color-gray-600);
+        font-size: 32px;
+        flex-shrink: 0;
+      }
+      .atribuicao-row__main {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+      .atribuicao-row__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: var(--space-3);
+      }
+      .atribuicao-row__identidade {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      .atribuicao-row__nome {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-gray-900);
+        line-height: 20px;
+      }
+      .atribuicao-row__email {
+        font-size: 12px;
+        color: var(--color-gray-600);
+        line-height: 16px;
+      }
+      .atribuicao-row__acoes {
+        display: flex;
+        gap: var(--space-4); /* 16px */
+        flex-shrink: 0;
+      }
+      .atribuicao-row__chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+      }
+      .atribuicao-row__chip-group {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* ─── Dev toolbar (acessível com ?dev=1) ─── */
+      .dev-toolbar {
+        position: fixed;
+        bottom: var(--space-2);
+        right: var(--space-2);
+        background: var(--color-gray-900);
+        color: var(--color-white);
+        padding: var(--space-2);
+        border-radius: var(--radius-sm);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        z-index: 9999;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        font-size: 12px;
+      }
+      .dev-toolbar__title {
+        font-weight: 700;
+        opacity: 0.7;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .dev-toolbar button {
+        background: var(--color-gray-800);
+        color: var(--color-white);
+        border: none;
+        padding: 4px 8px;
+        border-radius: 4px;
+        text-align: left;
+        font-family: inherit;
+        font-size: 12px;
+      }
+      .dev-toolbar button:hover { background: var(--color-gray-700); }
+
+      /* ─── Loading / Error global ─── */
+      .app-loading,
+      .app-error {
+        position: fixed;
+        inset: 60px 0 0 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-gray-700);
+        gap: 8px;
+      }
+      .app-error { color: var(--color-red-500); flex-direction: column; }
+    </style>
+    <script type="module" crossorigin src="./assets/index-X0hfNV3P.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
