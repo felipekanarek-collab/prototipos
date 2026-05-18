@@ -10,7 +10,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --dotfiles --dest filtro-precificador-fase1 --add"
+    "deploy": "gh-pages -d dist --dotfiles --dest precificadores-config --add"
   },
   "dependencies": {
     "clsx": "^2.1.1",
