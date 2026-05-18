@@ -1,0 +1,26 @@
+.ds-ref/
+.DS_Store
+node_modules/
+
+# Vite / build
+dist/
+dist-ssr/
+*.local
+*.log
+*.tsbuildinfo
+
+# DS snapshot copiado por scripts/copy-ds.mjs (gerado, não versionar)
+public/ds/
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.swp
+*.swo
+
+# Env
+.env
+.env.*
+!.env.example

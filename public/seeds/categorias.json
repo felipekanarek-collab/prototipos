@@ -1,0 +1,72 @@
+[
+  { "schemaVersion": 1, "id": "dep-mercearia",  "nome": "Mercearia",              "nivelId": "nivel-departamento", "caminho": ["Mercearia"],              "paiId": null },
+  { "schemaVersion": 1, "id": "dep-hortifruti", "nome": "Hortifrúti",             "nivelId": "nivel-departamento", "caminho": ["Hortifrúti"],             "paiId": null },
+  { "schemaVersion": 1, "id": "dep-padaria",    "nome": "Padaria e Confeitaria",  "nivelId": "nivel-departamento", "caminho": ["Padaria e Confeitaria"],  "paiId": null },
+  { "schemaVersion": 1, "id": "dep-acougue",    "nome": "Açougue e Frios",        "nivelId": "nivel-departamento", "caminho": ["Açougue e Frios"],        "paiId": null },
+  { "schemaVersion": 1, "id": "dep-higiene",    "nome": "Higiene e Limpeza",      "nivelId": "nivel-departamento", "caminho": ["Higiene e Limpeza"],      "paiId": null },
+
+  { "schemaVersion": 1, "id": "cat-doces",            "nome": "Doces",                    "nivelId": "nivel-categoria", "caminho": ["Mercearia", "Doces"],                    "paiId": "dep-mercearia" },
+  { "schemaVersion": 1, "id": "cat-salgados",         "nome": "Salgados",                 "nivelId": "nivel-categoria", "caminho": ["Mercearia", "Salgados"],                 "paiId": "dep-mercearia" },
+  { "schemaVersion": 1, "id": "cat-biscoitos-doces",  "nome": "Biscoitos Doces",          "nivelId": "nivel-categoria", "caminho": ["Mercearia", "Biscoitos Doces"],          "paiId": "dep-mercearia" },
+  { "schemaVersion": 1, "id": "cat-bebidas-nao-alc",  "nome": "Bebidas Não-Alcoólicas",   "nivelId": "nivel-categoria", "caminho": ["Mercearia", "Bebidas Não-Alcoólicas"],   "paiId": "dep-mercearia" },
+  { "schemaVersion": 1, "id": "cat-massas-molhos",    "nome": "Massas e Molhos",          "nivelId": "nivel-categoria", "caminho": ["Mercearia", "Massas e Molhos"],          "paiId": "dep-mercearia" },
+
+  { "schemaVersion": 1, "id": "cat-frutas",   "nome": "Frutas",   "nivelId": "nivel-categoria", "caminho": ["Hortifrúti", "Frutas"],   "paiId": "dep-hortifruti" },
+  { "schemaVersion": 1, "id": "cat-legumes",  "nome": "Legumes",  "nivelId": "nivel-categoria", "caminho": ["Hortifrúti", "Legumes"],  "paiId": "dep-hortifruti" },
+  { "schemaVersion": 1, "id": "cat-verduras", "nome": "Verduras", "nivelId": "nivel-categoria", "caminho": ["Hortifrúti", "Verduras"], "paiId": "dep-hortifruti" },
+
+  { "schemaVersion": 1, "id": "cat-pao",    "nome": "Pães",   "nivelId": "nivel-categoria", "caminho": ["Padaria e Confeitaria", "Pães"],   "paiId": "dep-padaria" },
+  { "schemaVersion": 1, "id": "cat-bolos",  "nome": "Bolos",  "nivelId": "nivel-categoria", "caminho": ["Padaria e Confeitaria", "Bolos"],  "paiId": "dep-padaria" },
+  { "schemaVersion": 1, "id": "cat-tortas", "nome": "Tortas", "nivelId": "nivel-categoria", "caminho": ["Padaria e Confeitaria", "Tortas"], "paiId": "dep-padaria" },
+
+  { "schemaVersion": 1, "id": "cat-carnes-bovinas", "nome": "Carnes Bovinas", "nivelId": "nivel-categoria", "caminho": ["Açougue e Frios", "Carnes Bovinas"], "paiId": "dep-acougue" },
+  { "schemaVersion": 1, "id": "cat-carnes-suinas",  "nome": "Carnes Suínas",  "nivelId": "nivel-categoria", "caminho": ["Açougue e Frios", "Carnes Suínas"],  "paiId": "dep-acougue" },
+  { "schemaVersion": 1, "id": "cat-aves",           "nome": "Aves",           "nivelId": "nivel-categoria", "caminho": ["Açougue e Frios", "Aves"],           "paiId": "dep-acougue" },
+  { "schemaVersion": 1, "id": "cat-frios",          "nome": "Frios",          "nivelId": "nivel-categoria", "caminho": ["Açougue e Frios", "Frios"],          "paiId": "dep-acougue" },
+
+  { "schemaVersion": 1, "id": "cat-higiene-pessoal",   "nome": "Higiene Pessoal",   "nivelId": "nivel-categoria", "caminho": ["Higiene e Limpeza", "Higiene Pessoal"],   "paiId": "dep-higiene" },
+  { "schemaVersion": 1, "id": "cat-limpeza-domestica", "nome": "Limpeza Doméstica", "nivelId": "nivel-categoria", "caminho": ["Higiene e Limpeza", "Limpeza Doméstica"], "paiId": "dep-higiene" },
+  { "schemaVersion": 1, "id": "cat-papelaria",         "nome": "Papelaria",         "nivelId": "nivel-categoria", "caminho": ["Higiene e Limpeza", "Papelaria"],         "paiId": "dep-higiene" },
+
+  { "schemaVersion": 1, "id": "sub-chocolates",   "nome": "Chocolates",     "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Doces", "Chocolates"],     "paiId": "cat-doces" },
+  { "schemaVersion": 1, "id": "sub-balas-gomas",  "nome": "Balas e Gomas",  "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Doces", "Balas e Gomas"],  "paiId": "cat-doces" },
+
+  { "schemaVersion": 1, "id": "sub-snacks",     "nome": "Snacks",     "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Salgados", "Snacks"],     "paiId": "cat-salgados" },
+  { "schemaVersion": 1, "id": "sub-amendoins",  "nome": "Amendoins",  "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Salgados", "Amendoins"],  "paiId": "cat-salgados" },
+
+  { "schemaVersion": 1, "id": "sub-refrigerantes", "nome": "Refrigerantes", "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Bebidas Não-Alcoólicas", "Refrigerantes"], "paiId": "cat-bebidas-nao-alc" },
+  { "schemaVersion": 1, "id": "sub-sucos",         "nome": "Sucos",         "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Bebidas Não-Alcoólicas", "Sucos"],         "paiId": "cat-bebidas-nao-alc" },
+  { "schemaVersion": 1, "id": "sub-aguas",         "nome": "Águas",         "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Bebidas Não-Alcoólicas", "Águas"],         "paiId": "cat-bebidas-nao-alc" },
+
+  { "schemaVersion": 1, "id": "sub-massas-secas", "nome": "Massas Secas", "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Massas e Molhos", "Massas Secas"], "paiId": "cat-massas-molhos" },
+  { "schemaVersion": 1, "id": "sub-molhos",       "nome": "Molhos",       "nivelId": "nivel-subcategoria", "caminho": ["Mercearia", "Massas e Molhos", "Molhos"],       "paiId": "cat-massas-molhos" },
+
+  { "schemaVersion": 1, "id": "sub-frutas-nacionais",  "nome": "Frutas Nacionais",  "nivelId": "nivel-subcategoria", "caminho": ["Hortifrúti", "Frutas", "Frutas Nacionais"],  "paiId": "cat-frutas" },
+  { "schemaVersion": 1, "id": "sub-frutas-importadas", "nome": "Frutas Importadas", "nivelId": "nivel-subcategoria", "caminho": ["Hortifrúti", "Frutas", "Frutas Importadas"], "paiId": "cat-frutas" },
+
+  { "schemaVersion": 1, "id": "sub-pao-frances", "nome": "Pão Francês",  "nivelId": "nivel-subcategoria", "caminho": ["Padaria e Confeitaria", "Pães", "Pão Francês"],  "paiId": "cat-pao" },
+  { "schemaVersion": 1, "id": "sub-pao-forma",   "nome": "Pão de Forma", "nivelId": "nivel-subcategoria", "caminho": ["Padaria e Confeitaria", "Pães", "Pão de Forma"], "paiId": "cat-pao" },
+
+  { "schemaVersion": 1, "id": "sub-bolos-tradicionais", "nome": "Bolos Tradicionais", "nivelId": "nivel-subcategoria", "caminho": ["Padaria e Confeitaria", "Bolos", "Bolos Tradicionais"], "paiId": "cat-bolos" },
+  { "schemaVersion": 1, "id": "sub-bolos-gourmet",      "nome": "Bolos Gourmet",      "nivelId": "nivel-subcategoria", "caminho": ["Padaria e Confeitaria", "Bolos", "Bolos Gourmet"],      "paiId": "cat-bolos" },
+
+  { "schemaVersion": 1, "id": "sub-tortas-doces",    "nome": "Tortas Doces",    "nivelId": "nivel-subcategoria", "caminho": ["Padaria e Confeitaria", "Tortas", "Tortas Doces"],    "paiId": "cat-tortas" },
+  { "schemaVersion": 1, "id": "sub-tortas-salgadas", "nome": "Tortas Salgadas", "nivelId": "nivel-subcategoria", "caminho": ["Padaria e Confeitaria", "Tortas", "Tortas Salgadas"], "paiId": "cat-tortas" },
+
+  { "schemaVersion": 1, "id": "sub-cortes-nobres",     "nome": "Cortes Nobres",       "nivelId": "nivel-subcategoria", "caminho": ["Açougue e Frios", "Carnes Bovinas", "Cortes Nobres"],     "paiId": "cat-carnes-bovinas" },
+  { "schemaVersion": 1, "id": "sub-cortes-cozimento",  "nome": "Cortes p/ Cozimento", "nivelId": "nivel-subcategoria", "caminho": ["Açougue e Frios", "Carnes Bovinas", "Cortes p/ Cozimento"], "paiId": "cat-carnes-bovinas" },
+
+  { "schemaVersion": 1, "id": "sub-frango-inteiro", "nome": "Frango Inteiro",   "nivelId": "nivel-subcategoria", "caminho": ["Açougue e Frios", "Aves", "Frango Inteiro"],   "paiId": "cat-aves" },
+  { "schemaVersion": 1, "id": "sub-cortes-frango",  "nome": "Cortes de Frango", "nivelId": "nivel-subcategoria", "caminho": ["Açougue e Frios", "Aves", "Cortes de Frango"], "paiId": "cat-aves" },
+
+  { "schemaVersion": 1, "id": "sub-presuntos", "nome": "Presuntos", "nivelId": "nivel-subcategoria", "caminho": ["Açougue e Frios", "Frios", "Presuntos"], "paiId": "cat-frios" },
+  { "schemaVersion": 1, "id": "sub-queijos",   "nome": "Queijos",   "nivelId": "nivel-subcategoria", "caminho": ["Açougue e Frios", "Frios", "Queijos"],   "paiId": "cat-frios" },
+  { "schemaVersion": 1, "id": "sub-embutidos", "nome": "Embutidos", "nivelId": "nivel-subcategoria", "caminho": ["Açougue e Frios", "Frios", "Embutidos"], "paiId": "cat-frios" },
+
+  { "schemaVersion": 1, "id": "sub-shampoos",   "nome": "Shampoos e Condicionadores", "nivelId": "nivel-subcategoria", "caminho": ["Higiene e Limpeza", "Higiene Pessoal", "Shampoos e Condicionadores"], "paiId": "cat-higiene-pessoal" },
+  { "schemaVersion": 1, "id": "sub-sabonetes",  "nome": "Sabonetes",                  "nivelId": "nivel-subcategoria", "caminho": ["Higiene e Limpeza", "Higiene Pessoal", "Sabonetes"],                  "paiId": "cat-higiene-pessoal" },
+
+  { "schemaVersion": 1, "id": "sub-detergentes", "nome": "Detergentes", "nivelId": "nivel-subcategoria", "caminho": ["Higiene e Limpeza", "Limpeza Doméstica", "Detergentes"], "paiId": "cat-limpeza-domestica" },
+  { "schemaVersion": 1, "id": "sub-amaciantes",  "nome": "Amaciantes",  "nivelId": "nivel-subcategoria", "caminho": ["Higiene e Limpeza", "Limpeza Doméstica", "Amaciantes"],  "paiId": "cat-limpeza-domestica" },
+  { "schemaVersion": 1, "id": "sub-multiuso",    "nome": "Multiuso",    "nivelId": "nivel-subcategoria", "caminho": ["Higiene e Limpeza", "Limpeza Doméstica", "Multiuso"],    "paiId": "cat-limpeza-domestica" }
+]
